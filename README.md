@@ -61,3 +61,11 @@ module "my_network" {
 | <a name="output_gw_id"></a> [gw_id](#output_gw_id) | ID of public gateways. |
 | <a name="output_vpc_id"></a> [vpc_id](#output_vpc_id) | ID of private networks. |
 <!-- END_TF_DOCS -->
+
+## Authors
+
+Module is maintained with help from [the community](https://github.com/scaleway-terraform-modules/terraform-scaleway-vpc/graphs/contributors).
+
+## License
+
+Mozilla Public License 2.0 Licensed. See [LICENSE](https://github.com/scaleway-terraform-modules/.github/tree/master/LICENSE) for full details.
