@@ -25,8 +25,9 @@ resource "scaleway_vpc_private_network" "this" {
 resource "scaleway_vpc_public_gateway_ip" "this" {
   count = var.gw_enabled && var.gw_reserve_ip ? 1 : 0
 
-  tags = var.tags
-  zone = var.zone
+  project_id = var.project_id
+  tags       = var.tags
+  zone       = var.zone
 }
 
 resource "scaleway_vpc_public_gateway" "this" {
@@ -37,6 +38,7 @@ resource "scaleway_vpc_public_gateway" "this" {
   enable_smtp          = var.smtp_enabled
   ip_id                = var.gw_reserve_ip ? scaleway_vpc_public_gateway_ip.this[count.index].id : null
   name                 = format("%s-gateway", var.name)
+  project_id           = var.project_id
   tags                 = var.tags
   type                 = var.gw_type
   upstream_dns_servers = var.dns_servers
@@ -46,8 +48,9 @@ resource "scaleway_vpc_public_gateway" "this" {
 resource "scaleway_vpc_public_gateway_dhcp" "this" {
   count = var.gw_enabled ? 1 : 0
 
-  subnet = var.subnet
-  zone   = var.zone
+  project_id = var.project_id
+  subnet     = var.subnet
+  zone       = var.zone
 }
 
 resource "scaleway_vpc_gateway_network" "this" {
