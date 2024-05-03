@@ -12,6 +12,14 @@ resource "scaleway_vpc_private_network" "this" {
   vpc_id     = scaleway_vpc.this.id
   tags       = var.tags
   zone       = var.zone
+
+  dynamic "ipv4_subnet" {
+    for_each = var.subnet != null ? [1] : []
+
+    content {
+      subnet = var.subnet
+    }
+  }
 }
 
 resource "scaleway_vpc_public_gateway_ip" "this" {
