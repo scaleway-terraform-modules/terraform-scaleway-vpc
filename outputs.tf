@@ -13,7 +13,13 @@ output "gw_id" {
   value       = try(scaleway_vpc_public_gateway.this[0].id, null)
 }
 
-output "vpc_id" {
+output "pn_id" {
   description = "ID of private networks."
   value       = scaleway_vpc_private_network.this.id
+}
+
+
+output "vpc_id" {
+  description = "ID of the VPC."
+  value       = scaleway_vpc.this.id
 }
