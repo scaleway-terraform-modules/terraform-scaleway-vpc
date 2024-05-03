@@ -52,6 +52,18 @@ variable "name" {
   default     = null
 }
 
+variable "project_id" {
+  description = "ID of the project in which ressources should be created."
+  type        = string
+  default     = null
+}
+
+variable "region" {
+  description = "Zone in which ressources should be created."
+  type        = string
+  default     = null
+}
+
 variable "smtp_enabled" {
   description = "Enable SMTP on gateways."
   type        = bool
