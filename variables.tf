@@ -35,13 +35,13 @@ variable "gw_type" {
 }
 
 variable "ipv4_subnet" {
-  description = "IPv4 subnet to associate with the private network."
+  description = "IPv4 subnet to associate with the private network. If null, a free /22 will be used."
   type        = string
   default     = null
 }
 
 variable "ipv6_subnet" {
-  description = "IPv6 subnet to associate with the private network."
+  description = "IPv6 subnet to associate with the private network. If null, a free /64 will be used."
   type        = string
   default     = null
 }
@@ -59,13 +59,13 @@ variable "name" {
 }
 
 variable "project_id" {
-  description = "ID of the project in which ressources should be created."
+  description = "ID of the project in which ressources should be created. Defaults to provider project."
   type        = string
   default     = null
 }
 
 variable "region" {
-  description = "Zone in which ressources should be created."
+  description = "Zone in which ressources should be created. Defaults to provider region."
   type        = string
   default     = null
 }
@@ -83,7 +83,7 @@ variable "tags" {
 }
 
 variable "zone" {
-  description = "Zone in which ressources should be created."
+  description = "Zone in which ressources should be created. Defaults to provider zone."
   type        = string
   default     = null
 }
