@@ -10,12 +10,6 @@ variable "bastion_port" {
   default     = 61000
 }
 
-variable "dhcp_enabled" {
-  description = "Create a DHCP configuration, to set parameters like subnet, lease time, etc."
-  type        = bool
-  default     = true
-}
-
 variable "dns_servers" {
   description = "Override the gateway's default recursive DNS servers."
   type        = list(string)

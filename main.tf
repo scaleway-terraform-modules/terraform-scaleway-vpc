@@ -30,6 +30,18 @@ resource "scaleway_vpc_public_gateway_ip" "this" {
   zone       = var.zone
 }
 
+resource "scaleway_ipam_ip" "this" {
+  count = var.gw_enabled ? 1 : 0
+
+  is_ipv6    = false
+  region     = var.region
+  project_id = var.project_id
+
+  source {
+    private_network_id = scaleway_vpc_private_network.this.id
+  }
+}
+
 resource "scaleway_vpc_public_gateway" "this" {
   count = var.gw_enabled ? 1 : 0
 
@@ -45,21 +57,16 @@ resource "scaleway_vpc_public_gateway" "this" {
   zone                 = var.zone
 }
 
-resource "scaleway_vpc_public_gateway_dhcp" "this" {
-  count = var.gw_enabled ? 1 : 0
-
-  project_id = var.project_id
-  subnet     = var.subnet
-  zone       = var.zone
-}
-
 resource "scaleway_vpc_gateway_network" "this" {
   count = var.gw_enabled ? 1 : 0
 
-  dhcp_id            = scaleway_vpc_public_gateway_dhcp.this[count.index].id
-  enable_dhcp        = var.dhcp_enabled
   enable_masquerade  = var.masquerade_enabled
   gateway_id         = scaleway_vpc_public_gateway.this[count.index].id
   private_network_id = scaleway_vpc_private_network.this.id
   zone               = var.zone
+
+  ipam_config {
+    push_default_route = true
+    ipam_ip_id         = scaleway_ipam_ip.this[count.index].id
+  }
 }
