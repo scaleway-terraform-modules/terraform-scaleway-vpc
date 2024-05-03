@@ -13,10 +13,18 @@ resource "scaleway_vpc_private_network" "this" {
   tags       = var.tags
 
   dynamic "ipv4_subnet" {
-    for_each = var.subnet != null ? [1] : []
+    for_each = var.ipv4_subnet != null ? [1] : []
 
     content {
-      subnet = var.subnet
+      subnet = var.ipv4_subnet
+    }
+  }
+
+  dynamic "ipv6_subnets" {
+    for_each = var.ipv6_subnet != null ? [1] : []
+
+    content {
+      subnet = var.ipv6_subnet
     }
   }
 }

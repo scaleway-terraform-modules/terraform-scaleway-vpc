@@ -34,6 +34,18 @@ variable "gw_type" {
   default     = "VPC-GW-S"
 }
 
+variable "ipv4_subnet" {
+  description = "IPv4 subnet to associate with the private network."
+  type        = string
+  default     = null
+}
+
+variable "ipv6_subnet" {
+  description = "IPv6 subnet to associate with the private network."
+  type        = string
+  default     = null
+}
+
 variable "masquerade_enabled" {
   description = "Enable masquerade on these networks."
   type        = bool
@@ -62,12 +74,6 @@ variable "smtp_enabled" {
   description = "Enable SMTP on gateways."
   type        = bool
   default     = false
-}
-
-variable "subnet" {
-  description = "Subnet to associate with the public gateway DHCP config."
-  type        = string
-  default     = null
 }
 
 variable "tags" {
