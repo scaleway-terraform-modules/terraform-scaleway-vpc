@@ -11,7 +11,6 @@ resource "scaleway_vpc_private_network" "this" {
   region     = var.region
   vpc_id     = scaleway_vpc.this.id
   tags       = var.tags
-  zone       = var.zone
 
   dynamic "ipv4_subnet" {
     for_each = var.subnet != null ? [1] : []
