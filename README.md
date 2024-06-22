@@ -12,7 +12,6 @@ This repository is used to manage VPCs on scaleway using terraform.
 ```hcl
 module "my_network" {
   source  = "scaleway-terraform-modules/vpc/scaleway"
-  version = "0.0.1"
 }
 ```
 
