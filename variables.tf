@@ -16,6 +16,12 @@ variable "dns_servers" {
   default     = null
 }
 
+variable "enable_routing" {
+  description = "Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards."
+  type        = bool
+  default     = false
+}
+
 variable "gw_enabled" {
   description = "Create a public gateway and attach it to the subnet."
   type        = bool

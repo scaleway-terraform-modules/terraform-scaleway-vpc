@@ -1,8 +1,10 @@
 resource "scaleway_vpc" "this" {
-  name       = format("%s-vpc", var.name)
-  project_id = var.project_id
-  region     = var.region
-  tags       = var.tags
+  name = format("%s-vpc", var.name)
+
+  enable_routing = var.enable_routing
+  project_id     = var.project_id
+  region         = var.region
+  tags           = var.tags
 }
 
 resource "scaleway_vpc_private_network" "this" {
