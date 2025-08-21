@@ -49,6 +49,8 @@ resource "scaleway_ipam_ip" "this" {
   source {
     private_network_id = scaleway_vpc_private_network.this.id
   }
+
+  tags = var.tags
 }
 
 resource "scaleway_vpc_public_gateway" "this" {
