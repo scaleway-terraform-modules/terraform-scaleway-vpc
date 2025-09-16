@@ -82,8 +82,13 @@ variable "tags" {
   default     = []
 }
 
-variable "zone" {
-  description = "Zone in which ressources should be created. Defaults to provider zone."
-  type        = string
-  default     = null
+variable "zones" {
+  description = "Zones in which ressources should be created. Defaults to provider zone."
+  type        = list(string)
+  default     = []
+
+  validation {
+    condition     = (var.region == null && length(var.zones) == 0) || (var.region != null && length(var.zones) == 0) || (var.region == null && length(var.zones) > 0 && length(distinct([for zone in var.zones : substr(zone, 0, length(zone) - 2)])) <= 1) || (var.region != null && length(var.zones) > 0 && alltrue([for zone in var.zones : startswith(zone, var.region)]))
+    error_message = "When both region and zones are specified, all zones must belong to the specified region. When only zones are specified, all zones must belong to the same region."
+  }
 }

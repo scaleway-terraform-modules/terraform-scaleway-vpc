@@ -20,7 +20,7 @@ module "my_network" {
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement_terraform) | >= 0.13 |
+| <a name="requirement_terraform"></a> [terraform](#requirement_terraform) | ~> 1.10 |
 | <a name="requirement_scaleway"></a> [scaleway](#requirement_scaleway) | >= 2.52.0 |
 
 ## Resources
@@ -52,7 +52,7 @@ module "my_network" {
 | <a name="input_region"></a> [region](#input_region) | Zone in which ressources should be created. Defaults to provider region. | `string` | `null` | no |
 | <a name="input_smtp_enabled"></a> [smtp_enabled](#input_smtp_enabled) | Enable SMTP on gateways. | `bool` | `false` | no |
 | <a name="input_tags"></a> [tags](#input_tags) | Tags associated with ressources. | `list(string)` | `[]` | no |
-| <a name="input_zone"></a> [zone](#input_zone) | Zone in which ressources should be created. Defaults to provider zone. | `string` | `null` | no |
+| <a name="input_zones"></a> [zones](#input_zones) | Zones in which ressources should be created. Defaults to provider zone. | `list(string)` | `[]` | no |
 
 ## Outputs
 
