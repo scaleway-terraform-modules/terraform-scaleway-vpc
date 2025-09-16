@@ -13,7 +13,7 @@ variable "bastion_port" {
 variable "enable_routing" {
   description = "Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards."
   type        = bool
-  default     = false
+  default     = true
 }
 
 variable "gw_enabled" {
