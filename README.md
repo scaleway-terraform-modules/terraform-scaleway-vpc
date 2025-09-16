@@ -52,7 +52,7 @@ module "my_network" {
 | <a name="input_region"></a> [region](#input_region) | Zone in which ressources should be created. Defaults to provider region. | `string` | `null` | no |
 | <a name="input_smtp_enabled"></a> [smtp_enabled](#input_smtp_enabled) | Enable SMTP on gateways. | `bool` | `false` | no |
 | <a name="input_tags"></a> [tags](#input_tags) | Tags associated with ressources. | `list(string)` | `[]` | no |
-| <a name="input_zones"></a> [zones](#input_zones) | Zones in which ressources should be created. Defaults to provider zone. | `list(string)` | `[null]` | no |
+| <a name="input_zones"></a> [zones](#input_zones) | Zones in which ressources should be created. Defaults to provider zone. | `list(string)` | ```[ null ]``` | no |
 
 ## Outputs
 
