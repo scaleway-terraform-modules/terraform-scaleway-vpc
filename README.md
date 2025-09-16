@@ -40,7 +40,7 @@ module "my_network" {
 |------|-------------|------|---------|:--------:|
 | <a name="input_bastion_enabled"></a> [bastion_enabled](#input_bastion_enabled) | Enable SSH bastion on gateways. | `bool` | `false` | no |
 | <a name="input_bastion_port"></a> [bastion_port](#input_bastion_port) | Port on which SSH bastions will listen. | `number` | `61000` | no |
-| <a name="input_enable_routing"></a> [enable_routing](#input_enable_routing) | Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards. | `bool` | `false` | no |
+| <a name="input_enable_routing"></a> [enable_routing](#input_enable_routing) | Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards. | `bool` | `true` | no |
 | <a name="input_gw_enabled"></a> [gw_enabled](#input_gw_enabled) | Create a public gateway and attach it to the subnet. | `bool` | `true` | no |
 | <a name="input_gw_reserve_ip"></a> [gw_reserve_ip](#input_gw_reserve_ip) | Reserve a flexible IP for the gateway. | `bool` | `true` | no |
 | <a name="input_gw_type"></a> [gw_type](#input_gw_type) | Gateway type. Can be `VPC-GW-S` or `VPC-GW-M` | `string` | `"VPC-GW-S"` | no |
