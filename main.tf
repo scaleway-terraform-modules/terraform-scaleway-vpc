@@ -59,7 +59,7 @@ resource "scaleway_vpc_public_gateway" "this" {
   bastion_enabled = var.bastion_enabled
   bastion_port    = var.bastion_port
   enable_smtp     = var.smtp_enabled
-  ip_id           = var.gw_reserve_ip ? scaleway_vpc_public_gateway_ip.this[each.key].id : null
+  ip_id           = var.gw_reserve_ip ? scaleway_vpc_public_gateway_ip.this[each.value].id : null
   name            = format("%s-gateway-%s", var.name, each.value)
   project_id      = var.project_id
   tags            = var.tags
@@ -71,12 +71,12 @@ resource "scaleway_vpc_gateway_network" "this" {
   for_each = var.gw_enabled ? toset(compact(var.zones)) : []
 
   enable_masquerade  = var.masquerade_enabled
-  gateway_id         = scaleway_vpc_public_gateway.this[each.key].id
+  gateway_id         = scaleway_vpc_public_gateway.this[each.value].id
   private_network_id = scaleway_vpc_private_network.this.id
   zone               = each.value
 
   ipam_config {
     push_default_route = true
-    ipam_ip_id         = scaleway_ipam_ip.this[each.key].id
+    ipam_ip_id         = scaleway_ipam_ip.this[each.value].id
   }
 }

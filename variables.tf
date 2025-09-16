@@ -85,5 +85,5 @@ variable "tags" {
 variable "zones" {
   description = "Zones in which ressources should be created. Defaults to provider zone."
   type        = list(string)
-  default     = [null]
+  default     = []
 }
