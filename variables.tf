@@ -86,4 +86,18 @@ variable "zones" {
   description = "Zones in which ressources should be created. Defaults to provider zone."
   type        = list(string)
   default     = []
+
+  validation {
+    condition = var.region == null || length(var.zones) == 0 || length(distinct([
+      for zone in var.zones : substr(zone, 0, length(zone) - 2)
+    ])) <= 1
+    error_message = "All zones must belong to the same region. For example, if region is 'fr-par', all zones must start with 'fr-par-'."
+  }
+
+  validation {
+    condition = var.region == null || length(var.zones) == 0 || alltrue([
+      for zone in var.zones : startswith(zone, var.region)
+    ])
+    error_message = "All zones must belong to the specified region. Zone format should be '<region>-<number>' (e.g., 'fr-par-1', 'fr-par-2')."
+  }
 }
