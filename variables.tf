@@ -82,8 +82,8 @@ variable "tags" {
   default     = []
 }
 
-variable "zone" {
-  description = "Zone in which ressources should be created. Defaults to provider zone."
-  type        = string
-  default     = null
+variable "zones" {
+  description = "Zones in which ressources should be created. Defaults to provider zone."
+  type        = list(string)
+  default     = [null]
 }
