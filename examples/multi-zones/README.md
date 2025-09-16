@@ -58,5 +58,6 @@ terraform apply
 ## Files
 
 - `main.tf`: Main configuration with VPC module call and multi-zone setup
+- `versions.tf`: Terraform and provider version constraints
 
 This example validates that the module correctly handles multi-zone deployments and demonstrates best practices for zone-aware VPC infrastructure deployment on Scaleway.
