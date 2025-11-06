@@ -56,15 +56,17 @@ resource "scaleway_ipam_ip" "this" {
 resource "scaleway_vpc_public_gateway" "this" {
   for_each = var.gw_enabled ? toset(compact(var.zones)) : []
 
-  bastion_enabled = var.bastion_enabled
-  bastion_port    = var.bastion_port
-  enable_smtp     = var.smtp_enabled
-  ip_id           = var.gw_reserve_ip ? scaleway_vpc_public_gateway_ip.this[each.value].id : null
-  name            = format("%s-gateway-%s", var.name, each.value)
-  project_id      = var.project_id
-  tags            = var.tags
-  type            = var.gw_type
-  zone            = each.value
+  allowed_ip_ranges = var.allowed_ip_ranges
+  bastion_enabled   = var.bastion_enabled
+  bastion_port      = var.bastion_port
+  enable_smtp       = var.smtp_enabled
+  ip_id             = var.gw_reserve_ip ? scaleway_vpc_public_gateway_ip.this[each.value].id : var.ip_id
+  name              = format("%s-gateway-%s", var.name, each.value)
+  project_id        = var.project_id
+  refresh_ssh_keys  = var.refresh_ssh_keys
+  tags              = var.tags
+  type              = var.gw_type
+  zone              = each.value
 }
 
 resource "scaleway_vpc_gateway_network" "this" {
