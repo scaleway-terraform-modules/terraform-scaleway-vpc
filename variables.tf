@@ -1,3 +1,9 @@
+variable "allowed_ip_ranges" {
+  description = "List of IP ranges (in CIDR notation) allowed to connect to the SSH bastion."
+  type        = list(string)
+  default     = ["0.0.0.0/0"]
+}
+
 variable "bastion_enabled" {
   description = "Enable SSH bastion on gateways."
   type        = bool
@@ -34,6 +40,12 @@ variable "gw_type" {
   default     = "VPC-GW-S"
 }
 
+variable "ip_id" {
+  description = "Attach an existing flexible IP to the gateway."
+  type        = string
+  default     = null
+}
+
 variable "ipv4_subnet" {
   description = "IPv4 subnet to associate with the private network. If null, a free /22 will be used."
   type        = string
@@ -66,6 +78,12 @@ variable "project_id" {
 
 variable "region" {
   description = "Zone in which ressources should be created. Defaults to provider region."
+  type        = string
+  default     = null
+}
+
+variable "refresh_ssh_keys" {
+  description = "Trigger a refresh of the SSH keys on the Public Gateway by changing this field's value."
   type        = string
   default     = null
 }

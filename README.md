@@ -21,7 +21,7 @@ module "my_network" {
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement_terraform) | ~> 1.10 |
-| <a name="requirement_scaleway"></a> [scaleway](#requirement_scaleway) | >= 2.52.0 |
+| <a name="requirement_scaleway"></a> [scaleway](#requirement_scaleway) | >= 2.61.0 |
 
 ## Resources
 
@@ -38,17 +38,20 @@ module "my_network" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_allowed_ip_ranges"></a> [allowed_ip_ranges](#input_allowed_ip_ranges) | List of IP ranges (in CIDR notation) allowed to connect to the SSH bastion. | `list(string)` | ```[ "0.0.0.0/0" ]``` | no |
 | <a name="input_bastion_enabled"></a> [bastion_enabled](#input_bastion_enabled) | Enable SSH bastion on gateways. | `bool` | `false` | no |
 | <a name="input_bastion_port"></a> [bastion_port](#input_bastion_port) | Port on which SSH bastions will listen. | `number` | `61000` | no |
 | <a name="input_enable_routing"></a> [enable_routing](#input_enable_routing) | Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards. | `bool` | `true` | no |
 | <a name="input_gw_enabled"></a> [gw_enabled](#input_gw_enabled) | Create a public gateway and attach it to the subnet. | `bool` | `true` | no |
 | <a name="input_gw_reserve_ip"></a> [gw_reserve_ip](#input_gw_reserve_ip) | Reserve a flexible IP for the gateway. | `bool` | `true` | no |
 | <a name="input_gw_type"></a> [gw_type](#input_gw_type) | Gateway type. Can be `VPC-GW-S` or `VPC-GW-M` | `string` | `"VPC-GW-S"` | no |
+| <a name="input_ip_id"></a> [ip_id](#input_ip_id) | Attach an existing flexible IP to the gateway. | `string` | `null` | no |
 | <a name="input_ipv4_subnet"></a> [ipv4_subnet](#input_ipv4_subnet) | IPv4 subnet to associate with the private network. If null, a free /22 will be used. | `string` | `null` | no |
 | <a name="input_ipv6_subnet"></a> [ipv6_subnet](#input_ipv6_subnet) | IPv6 subnet to associate with the private network. If null, a free /64 will be used. | `string` | `null` | no |
 | <a name="input_masquerade_enabled"></a> [masquerade_enabled](#input_masquerade_enabled) | Enable masquerade on these networks. | `bool` | `true` | no |
 | <a name="input_name"></a> [name](#input_name) | Name of the private network & gateway. If not provided it will be randomly generated. | `string` | `null` | no |
 | <a name="input_project_id"></a> [project_id](#input_project_id) | ID of the project in which ressources should be created. Defaults to provider project. | `string` | `null` | no |
+| <a name="input_refresh_ssh_keys"></a> [refresh_ssh_keys](#input_refresh_ssh_keys) | Trigger a refresh of the SSH keys on the Public Gateway by changing this field's value. | `string` | `null` | no |
 | <a name="input_region"></a> [region](#input_region) | Zone in which ressources should be created. Defaults to provider region. | `string` | `null` | no |
 | <a name="input_smtp_enabled"></a> [smtp_enabled](#input_smtp_enabled) | Enable SMTP on gateways. | `bool` | `false` | no |
 | <a name="input_tags"></a> [tags](#input_tags) | Tags associated with ressources. | `list(string)` | `[]` | no |
