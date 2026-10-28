@@ -65,9 +65,13 @@ variable "masquerade_enabled" {
 }
 
 variable "name" {
-  description = "Name of the private network & gateway. If not provided it will be randomly generated."
+  description = "Name of the private network & gateway."
   type        = string
-  default     = null
+
+  validation {
+    condition     = length(trimspace(var.name)) > 0
+    error_message = "name must be a non-empty string."
+  }
 }
 
 variable "project_id" {
