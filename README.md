@@ -20,14 +20,14 @@ module "my_network" {
 ## Requirements
 
 | Name | Version |
-| ---- | ------- |
+|------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement_terraform) | >= 1.11 |
 | <a name="requirement_scaleway"></a> [scaleway](#requirement_scaleway) | >= 2.79.0 |
 
 ## Resources
 
 | Name | Type |
-| ---- | ---- |
+|------|------|
 | [scaleway_ipam_ip.this](https://registry.terraform.io/providers/scaleway/scaleway/latest/docs/resources/ipam_ip) | resource |
 | [scaleway_vpc.this](https://registry.terraform.io/providers/scaleway/scaleway/latest/docs/resources/vpc) | resource |
 | [scaleway_vpc_gateway_network.this](https://registry.terraform.io/providers/scaleway/scaleway/latest/docs/resources/vpc_gateway_network) | resource |
@@ -38,7 +38,7 @@ module "my_network" {
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-| ---- | ----------- | ---- | ------- | :------: |
+|------|-------------|------|---------|:--------:|
 | <a name="input_name"></a> [name](#input_name) | Name of the private network & gateway. | `string` | n/a | yes |
 | <a name="input_allowed_ip_ranges"></a> [allowed_ip_ranges](#input_allowed_ip_ranges) | List of IP ranges (in CIDR notation) allowed to connect to the SSH bastion. | `list(string)` | ```[ "0.0.0.0/0" ]``` | no |
 | <a name="input_bastion_enabled"></a> [bastion_enabled](#input_bastion_enabled) | Enable SSH bastion on gateways. | `bool` | `false` | no |
@@ -61,7 +61,7 @@ module "my_network" {
 ## Outputs
 
 | Name | Description |
-| ---- | ----------- |
+|------|-------------|
 | <a name="output_gw_flexible_ip_address"></a> [gw_flexible_ip_address](#output_gw_flexible_ip_address) | Address of gateway flexible IP. |
 | <a name="output_gw_flexible_ip_id"></a> [gw_flexible_ip_id](#output_gw_flexible_ip_id) | ID of gateway flexible IP. |
 | <a name="output_gw_id"></a> [gw_id](#output_gw_id) | ID of public gateways. |
