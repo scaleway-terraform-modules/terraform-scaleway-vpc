@@ -1,3 +1,9 @@
+data "scaleway_config" "this" {}
+
+locals {
+  zones = length(compact(var.zones)) > 0 ? toset(compact(var.zones)) : toset([data.scaleway_config.this.zone])
+}
+
 resource "scaleway_vpc" "this" {
   name = format("%s-vpc", var.name)
 
@@ -32,7 +38,7 @@ resource "scaleway_vpc_private_network" "this" {
 }
 
 resource "scaleway_vpc_public_gateway_ip" "this" {
-  for_each = var.gw_enabled && var.gw_reserve_ip ? toset(compact(var.zones)) : []
+  for_each = var.gw_enabled && var.gw_reserve_ip ? local.zones : []
 
   project_id = var.project_id
   tags       = var.tags
@@ -40,7 +46,7 @@ resource "scaleway_vpc_public_gateway_ip" "this" {
 }
 
 resource "scaleway_ipam_ip" "this" {
-  for_each = var.gw_enabled ? toset(compact(var.zones)) : []
+  for_each = var.gw_enabled ? local.zones : []
 
   is_ipv6    = false
   region     = var.region
@@ -54,7 +60,7 @@ resource "scaleway_ipam_ip" "this" {
 }
 
 resource "scaleway_vpc_public_gateway" "this" {
-  for_each = var.gw_enabled ? toset(compact(var.zones)) : []
+  for_each = var.gw_enabled ? local.zones : []
 
   allowed_ip_ranges = var.allowed_ip_ranges
   bastion_enabled   = var.bastion_enabled
@@ -70,7 +76,7 @@ resource "scaleway_vpc_public_gateway" "this" {
 }
 
 resource "scaleway_vpc_gateway_network" "this" {
-  for_each = var.gw_enabled ? toset(compact(var.zones)) : []
+  for_each = var.gw_enabled ? local.zones : []
 
   enable_masquerade  = var.masquerade_enabled
   gateway_id         = scaleway_vpc_public_gateway.this[each.value].id
