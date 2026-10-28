@@ -34,6 +34,7 @@ module "my_network" {
 | [scaleway_vpc_private_network.this](https://registry.terraform.io/providers/scaleway/scaleway/latest/docs/resources/vpc_private_network) | resource |
 | [scaleway_vpc_public_gateway.this](https://registry.terraform.io/providers/scaleway/scaleway/latest/docs/resources/vpc_public_gateway) | resource |
 | [scaleway_vpc_public_gateway_ip.this](https://registry.terraform.io/providers/scaleway/scaleway/latest/docs/resources/vpc_public_gateway_ip) | resource |
+| [scaleway_config.this](https://registry.terraform.io/providers/scaleway/scaleway/latest/docs/data-sources/config) | data source |
 
 ## Inputs
 
